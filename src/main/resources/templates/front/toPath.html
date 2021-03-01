@@ -7,28 +7,17 @@
 <!-- static-resource -->
 <title>轉頁</title>
 </head>
-<body>
+<body th:object=${carrier}>
 
-<form id="send_form" method="post">
-<input type="hidden" id="message" th:if="${message!=null}" th:value="${message}">
-<input type="hidden" id="redirect_url" th:if="${redirect_url!=null}" th:value="${redirect_url}">
-</form>
-
+<input type="hidden" id="code" th:field="*{code}">
+<input type="hidden" id="message" th:field="*{message}">
+<input type="hidden" id="redirect_url" th:field="*{redirect_url}">
 
 
-<script type="text/javascript">
-var message=document.getElementById("message").value;
-var redirect_url=document.getElementById("redirect_url").value;
-var send_form=document.getElementById("send_form");
-console.log(message);
-if(!message){
-	
-    alert(message);
-}
-send_form.action=redirect_url;
-send_form.submit();
 
-</script>
+
+<script type="text/javascript" th:src="@{/js/toPath.js}"></script>
+
 <!-- static-resource -->
 <body th:include="/share/common-script::common-script"></body> 
 <!-- static-resource -->

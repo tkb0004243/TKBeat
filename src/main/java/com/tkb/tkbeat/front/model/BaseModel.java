@@ -15,15 +15,15 @@ public class BaseModel {
 	private String status;
 	
 	@Column(name="create_by")
-	private String createby;
+	private String create_by;
 	
 	@Column(name="update_by")
-	private String updateby;
+	private String update_by;
 	
 	@Column(name="create_time")
-	private String createtime;
+	private String create_time;
 	
 	@Column(name="update_time")
-	private String updatetime;
+	private String update_time;
 
 }

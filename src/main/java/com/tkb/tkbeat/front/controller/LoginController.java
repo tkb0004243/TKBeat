@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.tkb.tkbeat.front.model.Carrier;
 import com.tkb.tkbeat.front.model.User;
 import com.tkb.tkbeat.front.service.UserService;
+import com.tkb.tkbeat.front.share.errormessage.ErrorMessage;
 
 @Controller
 @RequestMapping(value="/login")
@@ -33,19 +35,18 @@ public class LoginController {
 			@RequestParam(value="password",required=true)String password,
 			Model model,
 			HttpSession session) {
-		
-		Optional<User> check_user=userService.checklogin(account, password);
+		Carrier carrier = new Carrier();
+		Optional<User> check_user=userService.checklogin(account, password,carrier);
 		if(check_user.isPresent()) {
+			carrier.setRedirect_url("/index");
 			session.setAttribute("userAccount", check_user.get());
-			model.addAttribute("message", "登入成功");
-			model.addAttribute("redirect_url", "/index");
+			model.addAttribute("carrier", carrier);
 			return "/front/toPath";
+			
 		}
-		model.addAttribute("message", "登入失敗");
-		
-		
-		
-		return "/front/login/login";
+		carrier.setRedirect_url("/login");
+		model.addAttribute("carrier", carrier);
+		return "/front/toPath";
 		
 	}
 }
