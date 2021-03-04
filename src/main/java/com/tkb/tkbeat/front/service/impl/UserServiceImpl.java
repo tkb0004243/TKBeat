@@ -11,6 +11,7 @@ import com.tkb.tkbeat.front.model.User;
 import com.tkb.tkbeat.front.repository.UserRepository;
 import com.tkb.tkbeat.front.service.UserService;
 import com.tkb.tkbeat.front.share.errormessage.ErrorMessage;
+import com.tkb.tkbeat.front.util.VertifyUtil;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -45,4 +46,36 @@ public class UserServiceImpl implements UserService {
 		return Optional.ofNullable(null);
 	}
 
-}
+	@Override
+	public Optional<User> checkRegisterUser(User newUser,Carrier carrier) {
+		if(!VertifyUtil.accountIsOk(newUser.getAccount())){
+			carrier.setCode(ErrorMessage.AccountErrorOrMissing.getCode());
+			carrier.setMessage(ErrorMessage.AccountErrorOrMissing.getDescription());
+			return Optional.ofNullable(null);
+		}
+		if(!VertifyUtil.passwordIsOk(newUser.getPassword())) {
+			carrier.setCode(ErrorMessage.PasswordErrorOrMissing.getCode());
+			carrier.setMessage(ErrorMessage.PasswordErrorOrMissing.getDescription());
+			return Optional.ofNullable(null);
+		}
+		if(!VertifyUtil.nameIsOk(newUser.getName())) {
+			carrier.setCode(ErrorMessage.NameErrorOrMissing.getCode());
+			carrier.setMessage(ErrorMessage.NameErrorOrMissing.getDescription());
+			return Optional.ofNullable(null);
+		}
+		if(!VertifyUtil.phoneIsOk(newUser.getPhone())) {
+			carrier.setCode(ErrorMessage.PhoneErrorOrMissing.getCode());
+			carrier.setMessage(ErrorMessage.PhoneErrorOrMissing.getDescription());
+			return Optional.ofNullable(null);
+		}
+		carrier.setCode(ErrorMessage.RegisterOk.getCode());
+		carrier.setMessage(ErrorMessage.RegisterOk.getDescription());
+		return Optional.of(newUser);
+		 
+			
+			
+		}
+		
+	}
+
+

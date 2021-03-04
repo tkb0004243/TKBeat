@@ -8,4 +8,6 @@ import com.tkb.tkbeat.front.model.User;
 public interface UserService {
 
 	Optional<User> checklogin(String account,String password,Carrier carrier);
+	
+	Optional<User> checkRegisterUser(User newUser,Carrier carrier);
 }

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<!-- static-resource -->
+<head th:include="/share/common-css::common-css"></head>
+<!-- static-resource -->
+<title>會員註冊</title>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+</head>
+<body>
+<div class="container">
+
+<div class="card bg-light">
+<article class="card-body mx-auto" style="max-width: 400px;">
+	<h4 class="card-title mt-3 text-center">創建會員</h4>
+	<p class="text-center">開始註冊會員</p>
+	<p>
+		<a href="" class="btn btn-block btn-twitter"> <i class="fab fa-google"></i>  從Google登入</a>
+		<a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i> 從臉書登入 </a>
+	</p>
+	<p class="divider-text">
+        <span class="bg-light">OR</span>
+    </p>
+	<form action="/user/register" method="post">
+	<div class="form-group input-group">
+		<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+		 </div>
+        <input name="name" class="form-control" placeholder="姓名" type="text">
+    </div> <!-- form-group// -->
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+		 </div>
+        <input name="account" class="form-control" placeholder="帳號" type="text">
+    </div> <!-- form-group// -->
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+		</div>
+    	<input name="phone" class="form-control" placeholder="電話號碼" type="text">
+    </div> <!-- form-group// -->
+    <div class="form-group input-group">
+	</div> <!-- form-group end.// -->
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+		</div>
+        <input class="form-control" placeholder="新設密碼" type="password" name="password">
+    </div> <!-- form-group// -->
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+		</div>
+        <input class="form-control" placeholder="重複密碼" type="password" name="repeat_password">
+    </div> <!-- form-group// -->                                      
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block">創建會員</button>
+    </div> <!-- form-group// -->      
+    <p class="text-center">是否已經註冊?<a href="">登入</a> </p>                                                                 
+</form>
+</article>
+</div> <!-- card.// -->
+
+</div> 
+<!--container end.//-->
+
+
+<!-- static-resource -->
+<body th:include="/share/common-script::common-script"></body> 
+<!-- static-resource -->
+</body>
+</html>
