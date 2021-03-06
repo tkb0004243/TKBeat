@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.tkb.tkbeat.front.model.Carrier;
 import com.tkb.tkbeat.front.model.User;
@@ -25,8 +26,11 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-	@RequestMapping(value="/info",method= {RequestMethod.GET})
-	public String info() {
+	@RequestMapping(value="/info",method= {RequestMethod.GET,RequestMethod.POST})
+	public String info(@SessionAttribute("userAccount")User user) {
+		
+		
+		
 		
 		return "/front/user/userinfo";
 	}
