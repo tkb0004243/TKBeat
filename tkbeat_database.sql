@@ -18,18 +18,21 @@ USE `tkbeat`;
 
 -- 傾印  資料表 tkbeat.user 結構
 CREATE TABLE IF NOT EXISTS `user` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '會員唯一值',
+  `user_info_id` int(11) NOT NULL DEFAULT 0 COMMENT '會員個人資料唯一值(外鍵)',
   `account` varchar(50) NOT NULL DEFAULT '0' COMMENT '帳號',
   `password` varchar(50) NOT NULL DEFAULT '0' COMMENT '密碼',
   `name` varchar(50) NOT NULL DEFAULT '0' COMMENT '姓名',
-  `phone` varchar(50) DEFAULT NULL COMMENT '電話號碼',
+  `phone` varchar(50) NOT NULL DEFAULT '0' COMMENT '電話號碼',
   `status` varchar(50) NOT NULL DEFAULT '0' COMMENT '狀態',
   `create_by` varchar(50) NOT NULL DEFAULT '系統建立' COMMENT '創建者',
   `update_by` varchar(50) NOT NULL DEFAULT '系統更新' COMMENT '更新者',
   `create_time` timestamp NOT NULL DEFAULT current_timestamp() COMMENT '創建時間',
   `update_time` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT '更新時間',
-  PRIMARY KEY (`user_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='會員資料';
+  PRIMARY KEY (`user_id`),
+  KEY `user&user_info` (`user_info_id`),
+  CONSTRAINT `user&user_info` FOREIGN KEY (`user_info_id`) REFERENCES `user_info` (`user_info_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='會員資料';
 
 -- 取消選取資料匯出。
 
@@ -40,9 +43,13 @@ CREATE TABLE IF NOT EXISTS `user_info` (
   `real_name` varchar(50) NOT NULL DEFAULT '0' COMMENT '會員真實姓名',
   `address` varchar(100) NOT NULL DEFAULT '0' COMMENT '會員住址',
   `profile` varchar(50) NOT NULL DEFAULT '0' COMMENT '會員頭像',
-  `email` varchar(100) DEFAULT '0' COMMENT '會員電子郵件',
+  `email` varchar(100) NOT NULL DEFAULT '0' COMMENT '會員電子郵件',
+  `create_by` varchar(50) NOT NULL DEFAULT '系統建立' COMMENT '建立者',
+  `update_by` varchar(50) NOT NULL DEFAULT '系統更新' COMMENT '更新者',
+  `create_time` timestamp NOT NULL DEFAULT current_timestamp() COMMENT '建立時間',
+  `update_time` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT '更新時間',
   PRIMARY KEY (`user_info_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='user的子表單(負責記錄會員的個人資訊)';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='user的子表單(負責記錄會員的個人資訊)';
 
 -- 取消選取資料匯出。
 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.tkb.tkbeat.front.model.Carrier;
 import com.tkb.tkbeat.front.model.User;
+import com.tkb.tkbeat.front.model.UserInfo;
 import com.tkb.tkbeat.front.repository.UserRepository;
 import com.tkb.tkbeat.front.service.UserService;
 
@@ -55,7 +56,9 @@ public class UserController {
 		model.addAttribute("carrier", carrier);
 	}
 	else {
-		userRepository.save(newUser.get());
+		User target=newUser.get();
+		target.setUserInfo(new UserInfo());
+		userRepository.save(target);
 		carrier.setRedirect_url("/login");
 		model.addAttribute("carrier", carrier);
 	}

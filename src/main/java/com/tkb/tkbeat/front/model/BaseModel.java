@@ -11,19 +11,19 @@ import lombok.Setter;
 @MappedSuperclass
 public class BaseModel {
 	
-	@Column(name="status")
+	@Column(insertable = false,name="status")
 	private String status;
 	
-	@Column(name="create_by")
+	@Column(insertable = false,name="create_by")
 	private String create_by;
 	
-	@Column(name="update_by")
+	@Column(insertable = false,name="update_by")
 	private String update_by;
 	
-	@Column(name="create_time")
+	@Column(insertable = false,name="create_time")
 	private String create_time;
 	
-	@Column(name="update_time")
+	@Column(insertable = false,name="update_time")
 	private String update_time;
 
 }
