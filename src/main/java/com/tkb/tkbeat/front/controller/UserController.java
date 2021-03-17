@@ -27,21 +27,15 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-	@RequestMapping(value="/info",method= {RequestMethod.GET,RequestMethod.POST})
-	public String info(@SessionAttribute("userAccount")User user) {
-		
-		
-		
-		
+	@RequestMapping(value="/info",method= {RequestMethod.GET})
+	public String info() {
+	
 		return "/front/user/userinfo";
 	}
 	
 	@RequestMapping(value="/register",method= {RequestMethod.GET})
 	public String go_register() {
-		
-		
 		return "/front/user/register";
-		
 	}
 	
 	@RequestMapping(value="/register",method= {RequestMethod.POST})
@@ -65,6 +59,14 @@ public class UserController {
 		
 	return "/front/toPath";
 		
+	}
+	
+	@RequestMapping(value="/modify",method= {RequestMethod.POST})
+	public String modify(@SessionAttribute("userAccount")User user,Model model) {
+		
+		
+	
+		return "/front/user/userinfo";
 	}
 
 }

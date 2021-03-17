@@ -12,26 +12,28 @@
 <body th:include="/share/header::header"></body>
 <!-- header -->
 <div class="container emp-profile">
-            <form method="post">
+            <form method="post" id="mainForm" th:object="${userInfo}"> 
+            <input type="hidden" th:field="*{age}" />
+            <input type="hidden" th:field="*{realName}" />
+            <input type="hidden" th:field="*{address}" />
+            <input type="hidden" th:field="*{profile}" />  
+            <input type="hidden" th:field="*{email}" />
+            </form>  
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
-                            <div class="file btn btn-lg btn-primary">
-                                更改圖片
-                                <input type="file" name="file"/>
-                            </div>
+                          
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="profile-head">
                                     <h5>
-                                       個人姓名放置處
+                                       個人資料
                                     </h5>
                                 
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">關於我</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
@@ -103,54 +105,16 @@
                                                 <p>Expert</p>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Hourly Rate</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>10$/hr</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Total Projects</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>230</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>English Level</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Expert</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Availability</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>6 months</p>
-                                            </div>
-                                        </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label>Your Bio</label><br/>
-                                        <p>Your detail description</p>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>           
+                   
         </div>
 
 
 
-
+<script type="text/javascript" th:src="@{/js/user/userinfo}"></script>
 
 <!-- static-resource -->
 <body th:include="/share/common-script::common-script"></body> 
