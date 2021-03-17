@@ -16,6 +16,7 @@ import com.tkb.tkbeat.front.model.User;
 import com.tkb.tkbeat.front.model.UserInfo;
 import com.tkb.tkbeat.front.repository.UserRepository;
 import com.tkb.tkbeat.front.service.UserService;
+import com.tkb.tkbeat.front.share.errormessage.ErrorMessage;
 
 @Controller
 @RequestMapping("/user")
@@ -28,12 +29,22 @@ public class UserController {
 	UserService userService;
 	
 	@RequestMapping(value="/info",method= {RequestMethod.GET,RequestMethod.POST})
-	public String info(@SessionAttribute("userAccount")User user) {
+	public String info(@SessionAttribute("userAccount")User user,Model model) {
+		if(null!=user.getUserInfo()) {
+			model.addAttribute("userInfo", user.getUserInfo());
+			return "/front/user/userinfo";
+			
+		}
+		else {
+			Carrier carrier=new Carrier();
+			carrier.setCode(ErrorMessage.UserInfoMissing.getCode());
+			carrier.setMessage(ErrorMessage.UserInfoMissing.getDescription());
+			carrier.setRedirect_url("/index");
+			return "/toPath";
+			
+		}
 		
-		
-		
-		
-		return "/front/user/userinfo";
+
 	}
 	
 	@RequestMapping(value="/register",method= {RequestMethod.GET})
