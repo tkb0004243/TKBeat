@@ -15,7 +15,10 @@ public enum ErrorMessage {
 	AccountErrorOrMissing(112,"註冊帳號遺失或驗證失敗"),
 	PasswordErrorOrMissing(113,"註冊密碼遺失或驗證失敗"),
 	PhoneErrorOrMissing(114,"註冊電話遺失或驗證失敗"),
-	NameErrorOrMissing(115,"註冊姓名遺失或驗證失敗");
+	NameErrorOrMissing(115,"註冊姓名遺失或驗證失敗"),
+	
+	//會員個人資料 121~130
+	UserInfoMissing(121,"會員資料遺失");
 	
 	
 	ErrorMessage(Integer number, String description) 
